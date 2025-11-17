@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for Design System */
+:root {
+  /* Typography */
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Monaco', 'Consolas', monospace;
+  
+  /* Cyber Security Specific Colors */
+  --color-matrix: #00FF41;
+  --color-neon: #0FF0FC;
+  --color-cyber-purple: #8566DC;
+  --color-cyber-orange: #FF8600;
+  
+  /* Threat Level Colors */
+  --color-threat-critical: #B61400;
+  --color-threat-high: #E11900;
+  --color-threat-medium: #FF9043;
+  --color-threat-low: #F6BB3D;
+  
+  /* Glow Effects */
+  --glow-matrix: 0 0 20px rgba(0, 255, 65, 0.3);
+  --glow-cyan: 0 0 20px rgba(15, 240, 252, 0.3);
+  --glow-danger: 0 0 20px rgba(225, 25, 0, 0.3);
+  
+  /* Animation Durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0A0B0A 0%, #191E1C 50%, #0A0B0A 100%);
+  min-height: 100vh;
+}
+
+/* Cyber Security Background Effects */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(15, 240, 252, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(133, 102, 220, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Grid Pattern Overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(25, 30, 28, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(11, 133, 176, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(11, 133, 176, 0.7);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 65, 0.2);
+  color: #FFFFFF;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--color-matrix);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.8);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes data-stream {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Utility Classes */
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-scan-line {
+  animation: scan-line 3s linear infinite;
+}
+
+.animate-data-stream {
+  animation: data-stream 4s linear infinite;
+}
+
+/* Typography Classes */
+.text-heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+/* Threat Level Indicators */
+.threat-critical {
+  color: var(--color-threat-critical);
+  border-color: var(--color-threat-critical);
+}
+
+.threat-high {
+  color: var(--color-threat-high);
+  border-color: var(--color-threat-high);
+}
+
+.threat-medium {
+  color: var(--color-threat-medium);
+  border-color: var(--color-threat-medium);
+}
+
+.threat-low {
+  color: var(--color-threat-low);
+  border-color: var(--color-threat-low);
+}
+
+/* Glass Effect */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(25, 30, 28, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Matrix Effect for Loading States */
+.matrix-rain {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-rain::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.1) 50%,
+    transparent 100%
+  );
+  animation: data-stream 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Button Glow Effects */
+.btn-glow-matrix {
+  box-shadow: var(--glow-matrix);
+  transition: box-shadow var(--duration-normal) ease;
+}
+
+.btn-glow-matrix:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+}
+
+.btn-glow-cyan {
+  box-shadow: var(--glow-cyan);
+  transition: box-shadow var(--duration-normal) ease;
+}
+
+.btn-glow-cyan:hover {
+  box-shadow: 0 0 30px rgba(15, 240, 252, 0.5);
+}
+
+/* Status Indicators */
+.status-active {
+  position: relative;
+}
+
+.status-active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--color-matrix);
+  border-radius: 50%;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Loading Spinner */
+.cyber-spinner {
+  border: 2px solid rgba(0, 255, 65, 0.2);
+  border-left: 2px solid var(--color-matrix);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
