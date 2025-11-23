@@ -139,42 +139,42 @@ const Targets: React.FC = () => {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-heading text-h2 font-semibold text-gray-50">
+          <h1 className="text-heading text-h2 font-semibold text-slate-900 dark:text-gray-50">
             Target Management
           </h1>
-          <p className="text-body-sm text-gray-400 mt-1">
+          <p className="text-body-sm text-slate-600 dark:text-gray-400 mt-1">
             Configure investigation targets and monitor scanning progress
           </p>
         </div>
-        <div className="flex items-center space-x-2 text-xs text-gray-400">
+        <div className="flex items-center space-x-2 text-xs text-slate-600 dark:text-gray-400">
           <Clock className="w-4 h-4" />
           <span>Last updated: 30 seconds ago</span>
-          <div className="w-2 h-2 bg-cyber-matrix rounded-full animate-pulse"></div>
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
         </div>
       </div>
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card variant="solid" className="border-l-4 border-primary-800">
+        <Card variant="solid" className="border-l-4 border-blue-600">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Total Targets</p>
-                <p className="text-h3 font-bold text-gray-50">{stats.total}</p>
+                <p className="text-body-sm font-medium text-slate-600 dark:text-gray-400">Total Targets</p>
+                <p className="text-h3 font-bold text-slate-900 dark:text-gray-50">{stats.total}</p>
               </div>
-              <Target className="w-8 h-8 text-primary-700" />
+              <Target className="w-8 h-8 text-blue-600" />
             </div>
           </CardContent>
         </Card>
 
-        <Card variant="solid" className="border-l-4 border-cyber-matrix">
+        <Card variant="solid" className="border-l-4 border-blue-500">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Active/Scanning</p>
-                <p className="text-h3 font-bold text-gray-50">{stats.active}</p>
+                <p className="text-body-sm font-medium text-slate-600 dark:text-gray-400">Active/Scanning</p>
+                <p className="text-h3 font-bold text-slate-900 dark:text-gray-50">{stats.active}</p>
               </div>
-              <Search className="w-8 h-8 text-cyber-matrix animate-pulse" />
+              <Search className="w-8 h-8 text-blue-500 animate-pulse" />
             </div>
           </CardContent>
         </Card>
@@ -183,8 +183,8 @@ const Targets: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Critical Risk</p>
-                <p className="text-h3 font-bold text-gray-50">{stats.critical}</p>
+                <p className="text-body-sm font-medium text-slate-600 dark:text-gray-400">Critical Risk</p>
+                <p className="text-h3 font-bold text-slate-900 dark:text-gray-50">{stats.critical}</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-danger-700" />
             </div>
@@ -195,8 +195,8 @@ const Targets: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Total Vulns</p>
-                <p className="text-h3 font-bold text-gray-50">{stats.vulnerabilities}</p>
+                <p className="text-body-sm font-medium text-slate-600 dark:text-gray-400">Total Vulns</p>
+                <p className="text-h3 font-bold text-slate-900 dark:text-gray-50">{stats.vulnerabilities}</p>
               </div>
               <Server className="w-8 h-8 text-warning-700" />
             </div>
@@ -209,10 +209,10 @@ const Targets: React.FC = () => {
         {/* Investigation Entry Points */}
         <Card variant="glass" glow glowColor="primary">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Add Investigation Target
             </h2>
-            <p className="text-body-sm text-gray-400">
+            <p className="text-body-sm text-slate-600 dark:text-gray-400">
               Choose your investigation starting point
             </p>
           </CardHeader>
@@ -223,8 +223,8 @@ const Targets: React.FC = () => {
                 onClick={() => setActiveTab('direct')}
                 className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeTab === 'direct'
-                    ? 'bg-primary-800 text-cyber-matrix border border-primary-700'
-                    : 'text-gray-400 hover:text-gray-50'
+                    ? 'bg-primary-800 text-blue-500 border border-primary-700'
+                    : 'text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-gray-50'
                 }`}
               >
                 <Server className="w-4 h-4 inline mr-2" />
@@ -234,8 +234,8 @@ const Targets: React.FC = () => {
                 onClick={() => setActiveTab('company')}
                 className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeTab === 'company'
-                    ? 'bg-primary-800 text-cyber-matrix border border-primary-700'
-                    : 'text-gray-400 hover:text-gray-50'
+                    ? 'bg-primary-800 text-blue-500 border border-primary-700'
+                    : 'text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-gray-50'
                 }`}
               >
                 <Building className="w-4 h-4 inline mr-2" />
@@ -264,8 +264,8 @@ const Targets: React.FC = () => {
                           onClick={() => setFormData({ ...formData, targetType: type.value })}
                           className={`p-3 rounded-lg border transition-all duration-200 ${
                             formData.targetType === type.value
-                              ? 'border-primary-700 bg-primary-900/20 text-cyber-matrix'
-                              : 'border-gray-600 bg-gray-800/50 text-gray-400 hover:text-gray-50 hover:border-gray-500'
+                              ? 'border-primary-700 bg-primary-900/20 text-blue-500'
+                              : 'border-gray-600 bg-gray-800/50 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-gray-50 hover:border-gray-500'
                           }`}
                         >
                           <Icon className="w-5 h-5 mx-auto mb-1" />
@@ -340,8 +340,8 @@ const Targets: React.FC = () => {
                           onClick={() => setFormData({ ...formData, companyType: type.value })}
                           className={`p-3 rounded-lg border transition-all duration-200 ${
                             formData.companyType === type.value
-                              ? 'border-primary-700 bg-primary-900/20 text-cyber-matrix'
-                              : 'border-gray-600 bg-gray-800/50 text-gray-400 hover:text-gray-50 hover:border-gray-500'
+                              ? 'border-primary-700 bg-primary-900/20 text-blue-500'
+                              : 'border-gray-600 bg-gray-800/50 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-gray-50 hover:border-gray-500'
                           }`}
                         >
                           <Icon className="w-5 h-5 mx-auto mb-1" />
@@ -413,7 +413,7 @@ const Targets: React.FC = () => {
         {/* Investigation Tips */}
         <Card variant="solid">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Investigation Guidelines
             </h2>
           </CardHeader>
@@ -421,7 +421,7 @@ const Targets: React.FC = () => {
             <div className="space-y-4">
               <div>
                 <h3 className="text-body font-medium text-gray-300 mb-2">Direct Endpoint Investigation</h3>
-                <ul className="text-body-sm text-gray-400 space-y-1">
+                <ul className="text-body-sm text-slate-600 dark:text-gray-400 space-y-1">
                   <li>• <strong>IP Address:</strong> Direct system scanning and enumeration</li>
                   <li>• <strong>Domain:</strong> DNS resolution and service discovery</li>
                   <li>• <strong>Computer:</strong> NetBIOS and SMB enumeration</li>
@@ -431,7 +431,7 @@ const Targets: React.FC = () => {
 
               <div>
                 <h3 className="text-body font-medium text-gray-300 mb-2">Company-Wide Investigation</h3>
-                <ul className="text-body-sm text-gray-400 space-y-1">
+                <ul className="text-body-sm text-slate-600 dark:text-gray-400 space-y-1">
                   <li>• <strong>Company Name:</strong> OSINT and public record analysis</li>
                   <li>• <strong>Domain:</strong> Subdomain enumeration and DNS walking</li>
                   <li>• <strong>IP Range:</strong> Network scanning and host discovery</li>
@@ -440,10 +440,10 @@ const Targets: React.FC = () => {
 
               <div className="bg-primary-900/20 border border-primary-700/50 rounded-lg p-3">
                 <div className="flex items-start space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-cyber-matrix mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5" />
                   <div>
-                    <p className="text-xs font-medium text-cyber-matrix">Defensive Security Focus</p>
-                    <p className="text-xs text-gray-400 mt-1">
+                    <p className="text-xs font-medium text-blue-500">Defensive Security Focus</p>
+                    <p className="text-xs text-slate-600 dark:text-gray-400 mt-1">
                       All investigations are designed for authorized penetration testing and security assessment.
                     </p>
                   </div>
@@ -458,7 +458,7 @@ const Targets: React.FC = () => {
       <Card variant="glass">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Current Targets
             </h2>
             <div className="flex items-center space-x-2">
@@ -491,10 +491,10 @@ const Targets: React.FC = () => {
                   <TableRow key={target.id}>
                     <TableCell>
                       <div className="flex items-center space-x-3">
-                        <IconComponent className="w-4 h-4 text-gray-400" />
+                        <IconComponent className="w-4 h-4 text-slate-600 dark:text-gray-400" />
                         <div>
-                          <p className="font-medium text-gray-50">{target.name}</p>
-                          <p className="text-xs text-gray-400 font-mono">{target.value}</p>
+                          <p className="font-medium text-slate-900 dark:text-gray-50">{target.name}</p>
+                          <p className="text-xs text-slate-600 dark:text-gray-400 font-mono">{target.value}</p>
                         </div>
                       </div>
                     </TableCell>
@@ -513,15 +513,15 @@ const Targets: React.FC = () => {
                       <span className={`font-mono font-bold ${
                         target.vulnerabilities > 5 ? 'text-danger-400' :
                         target.vulnerabilities > 2 ? 'text-warning-400' :
-                        'text-gray-400'
+                        'text-slate-600 dark:text-gray-400'
                       }`}>
                         {target.vulnerabilities}
                       </span>
                     </TableCell>
-                    <TableCell className="text-gray-400 text-xs">
+                    <TableCell className="text-slate-600 dark:text-gray-400 text-xs">
                       {target.lastScanned}
                     </TableCell>
-                    <TableCell className="text-gray-400 text-xs">
+                    <TableCell className="text-slate-600 dark:text-gray-400 text-xs">
                       {target.os || '-'}
                     </TableCell>
                     <TableCell>

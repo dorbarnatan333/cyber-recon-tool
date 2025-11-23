@@ -215,9 +215,9 @@ const Vulnerabilities: React.FC = () => {
       open: 'text-danger-400',
       investigating: 'text-warning-400',
       mitigated: 'text-success-400',
-      'false-positive': 'text-gray-400'
+      'false-positive': 'text-slate-600'
     }
-    return colorMap[status as keyof typeof colorMap] || 'text-gray-400'
+    return colorMap[status as keyof typeof colorMap] || 'text-slate-600'
   }
 
   // Helper function for severity counts (currently unused but kept for future features)
@@ -244,15 +244,15 @@ const Vulnerabilities: React.FC = () => {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-heading text-h2 font-semibold text-gray-50">
+          <h1 className="text-heading text-h2 font-semibold text-slate-900">
             Vulnerability Management
           </h1>
-          <p className="text-body-sm text-gray-400 mt-1">
+          <p className="text-body-sm text-slate-600 mt-1">
             Track, analyze, and remediate security vulnerabilities across your infrastructure
           </p>
         </div>
         <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-2 text-xs text-gray-400">
+          <div className="flex items-center space-x-2 text-xs text-slate-600">
             <Clock className="w-4 h-4" />
             <span>Last scan: 30 minutes ago</span>
           </div>
@@ -269,10 +269,10 @@ const Vulnerabilities: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Total Vulnerabilities</p>
-                <p className="text-h3 font-bold text-gray-50">{vulnStats.total}</p>
+                <p className="text-body-sm font-medium text-slate-600">Total Vulnerabilities</p>
+                <p className="text-h3 font-bold text-slate-900">{vulnStats.total}</p>
               </div>
-              <Database className="w-8 h-8 text-gray-400" />
+              <Database className="w-8 h-8 text-slate-600" />
             </div>
           </CardContent>
         </Card>
@@ -281,8 +281,8 @@ const Vulnerabilities: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Critical</p>
-                <p className="text-h3 font-bold text-gray-50">{vulnStats.critical}</p>
+                <p className="text-body-sm font-medium text-slate-600">Critical</p>
+                <p className="text-h3 font-bold text-slate-900">{vulnStats.critical}</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-danger-700" />
             </div>
@@ -293,8 +293,8 @@ const Vulnerabilities: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">High Severity</p>
-                <p className="text-h3 font-bold text-gray-50">{vulnStats.high}</p>
+                <p className="text-body-sm font-medium text-slate-600">High Severity</p>
+                <p className="text-h3 font-bold text-slate-900">{vulnStats.high}</p>
               </div>
               <Shield className="w-8 h-8 text-warning-700" />
             </div>
@@ -305,8 +305,8 @@ const Vulnerabilities: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Open Issues</p>
-                <p className="text-h3 font-bold text-gray-50">{vulnStats.open}</p>
+                <p className="text-body-sm font-medium text-slate-600">Open Issues</p>
+                <p className="text-h3 font-bold text-slate-900">{vulnStats.open}</p>
               </div>
               <Target className="w-8 h-8 text-danger-600" />
             </div>
@@ -317,10 +317,10 @@ const Vulnerabilities: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">New This Week</p>
-                <p className="text-h3 font-bold text-gray-50">{vulnStats.newThisWeek}</p>
+                <p className="text-body-sm font-medium text-slate-600">New This Week</p>
+                <p className="text-h3 font-bold text-slate-900">{vulnStats.newThisWeek}</p>
               </div>
-              <TrendingUp className="w-8 h-8 text-cyber-matrix" />
+              <TrendingUp className="w-8 h-8 text-blue-500" />
             </div>
           </CardContent>
         </Card>
@@ -342,8 +342,8 @@ const Vulnerabilities: React.FC = () => {
                 onClick={() => setActiveTab(tab.key as any)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeTab === tab.key
-                    ? 'bg-primary-800 text-cyber-matrix border border-primary-700'
-                    : 'text-gray-400 hover:text-gray-50'
+                    ? 'bg-primary-800 text-blue-500 border border-primary-700'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {tab.label} ({tab.count})
@@ -377,7 +377,7 @@ const Vulnerabilities: React.FC = () => {
           <CardHeader>
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-heading text-h5 font-semibold text-gray-50">{selectedVuln.title}</h3>
+                <h3 className="text-heading text-h5 font-semibold text-slate-900">{selectedVuln.title}</h3>
                 <div className="flex items-center space-x-3 mt-2">
                   <CVEBadge cveId={selectedVuln.cveId} score={selectedVuln.cvssScore} />
                   <ThreatBadge level={selectedVuln.severity} />
@@ -394,13 +394,13 @@ const Vulnerabilities: React.FC = () => {
               <div className="lg:col-span-2 space-y-4">
                 <div>
                   <h4 className="text-body font-medium text-gray-300 mb-2">Description</h4>
-                  <p className="text-body-sm text-gray-400">{selectedVuln.description}</p>
+                  <p className="text-body-sm text-slate-600">{selectedVuln.description}</p>
                 </div>
 
                 {selectedVuln.remediation && (
                   <div>
                     <h4 className="text-body font-medium text-gray-300 mb-2">Remediation</h4>
-                    <p className="text-body-sm text-gray-400">{selectedVuln.remediation}</p>
+                    <p className="text-body-sm text-slate-600">{selectedVuln.remediation}</p>
                   </div>
                 )}
 
@@ -428,20 +428,20 @@ const Vulnerabilities: React.FC = () => {
                   <h4 className="text-body font-medium text-gray-300 mb-2">Technical Details</h4>
                   <div className="space-y-2 text-body-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-400">CVSS Score:</span>
-                      <span className="text-gray-50 font-mono">{selectedVuln.cvssScore}</span>
+                      <span className="text-slate-600">CVSS Score:</span>
+                      <span className="text-slate-900 font-mono">{selectedVuln.cvssScore}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Vector:</span>
-                      <span className="text-gray-50 font-mono text-xs">{selectedVuln.cvssVector.split('/').slice(0, 2).join('/')}</span>
+                      <span className="text-slate-600">Vector:</span>
+                      <span className="text-slate-900 font-mono text-xs">{selectedVuln.cvssVector.split('/').slice(0, 2).join('/')}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Source:</span>
-                      <span className="text-gray-50">{selectedVuln.source}</span>
+                      <span className="text-slate-600">Source:</span>
+                      <span className="text-slate-900">{selectedVuln.source}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Discovered:</span>
-                      <span className="text-gray-50">{selectedVuln.discoveredAt}</span>
+                      <span className="text-slate-600">Discovered:</span>
+                      <span className="text-slate-900">{selectedVuln.discoveredAt}</span>
                     </div>
                   </div>
                 </div>
@@ -450,7 +450,7 @@ const Vulnerabilities: React.FC = () => {
                   <h4 className="text-body font-medium text-gray-300 mb-2">Affected Assets</h4>
                   <div className="space-y-1">
                     {selectedVuln.affectedTargets.map((target, index) => (
-                      <div key={index} className="text-body-sm font-mono text-cyber-matrix">
+                      <div key={index} className="text-body-sm font-mono text-blue-500">
                         {target}
                       </div>
                     ))}
@@ -462,18 +462,18 @@ const Vulnerabilities: React.FC = () => {
                     <h4 className="text-body font-medium text-gray-300 mb-2">Exploit Information</h4>
                     <div className="space-y-2 text-body-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-400">Available:</span>
+                        <span className="text-slate-600">Available:</span>
                         <Badge variant={selectedVuln.exploit.available ? 'danger' : 'success'} size="sm">
                           {selectedVuln.exploit.available ? 'Yes' : 'No'}
                         </Badge>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-400">Complexity:</span>
-                        <span className="text-gray-50 capitalize">{selectedVuln.exploit.complexity}</span>
+                        <span className="text-slate-600">Complexity:</span>
+                        <span className="text-slate-900 capitalize">{selectedVuln.exploit.complexity}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-400">Public Exploits:</span>
-                        <span className="text-gray-50">{selectedVuln.exploit.publicExploits}</span>
+                        <span className="text-slate-600">Public Exploits:</span>
+                        <span className="text-slate-900">{selectedVuln.exploit.publicExploits}</span>
                       </div>
                     </div>
                   </div>
@@ -488,11 +488,11 @@ const Vulnerabilities: React.FC = () => {
       <Card variant="glass">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900">
               Vulnerability Findings
             </h2>
             <div className="flex items-center space-x-2">
-              <span className="text-body-sm text-gray-400">
+              <span className="text-body-sm text-slate-600">
                 Showing {filteredVulns.length} of {vulnStats.total} vulnerabilities
               </span>
             </div>
@@ -523,7 +523,7 @@ const Vulnerabilities: React.FC = () => {
                   >
                     <TableCell>
                       <div>
-                        <p className="font-medium text-gray-50">{vuln.title}</p>
+                        <p className="font-medium text-slate-900">{vuln.title}</p>
                         <CVEBadge cveId={vuln.cveId} score={vuln.cvssScore} />
                       </div>
                     </TableCell>
@@ -535,7 +535,7 @@ const Vulnerabilities: React.FC = () => {
                         vuln.cvssScore >= 9 ? 'text-danger-400' :
                         vuln.cvssScore >= 7 ? 'text-warning-400' :
                         vuln.cvssScore >= 4 ? 'text-primary-400' :
-                        'text-gray-400'
+                        'text-slate-600'
                       }`}>
                         {vuln.cvssScore.toFixed(1)}
                       </span>
@@ -543,7 +543,7 @@ const Vulnerabilities: React.FC = () => {
                     <TableCell>
                       <div className="flex items-center space-x-2">
                         <StatusIcon className={`w-4 h-4 ${getStatusColor(vuln.status)}`} />
-                        <span className="text-gray-50 capitalize">{vuln.status.replace('-', ' ')}</span>
+                        <span className="text-slate-900 capitalize">{vuln.status.replace('-', ' ')}</span>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -560,7 +560,7 @@ const Vulnerabilities: React.FC = () => {
                         )}
                       </div>
                     </TableCell>
-                    <TableCell className="text-gray-400 text-xs">
+                    <TableCell className="text-slate-600 text-xs">
                       {vuln.discoveredAt}
                     </TableCell>
                     <TableCell>

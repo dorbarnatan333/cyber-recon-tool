@@ -53,17 +53,17 @@ const Dashboard: React.FC = () => {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-heading text-h2 font-semibold text-gray-50">
+          <h1 className="text-heading text-h2 font-semibold text-slate-900 dark:text-gray-50">
             Security Operations Center
           </h1>
-          <p className="text-body-sm text-gray-400 mt-1">
+          <p className="text-body-sm text-slate-600 dark:text-gray-400 mt-1">
             Real-time monitoring and threat analysis dashboard
           </p>
         </div>
-        <div className="flex items-center space-x-2 text-xs text-gray-400">
+        <div className="flex items-center space-x-2 text-xs text-slate-600 dark:text-gray-400">
           <Clock className="w-4 h-4" />
           <span>Last updated: 2 minutes ago</span>
-          <div className="w-2 h-2 bg-cyber-matrix rounded-full animate-pulse"></div>
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
         </div>
       </div>
 
@@ -73,10 +73,10 @@ const Dashboard: React.FC = () => {
         <MetricCard
           title="Active Targets"
           value="24"
-          icon={<Target className="w-6 h-6 text-primary-700" />}
+          icon={<Target className="w-6 h-6 text-blue-600" />}
           trend={{ value: "+3 this week", positive: true }}
           glowColor="primary"
-          className="border-l-4 border-primary-800"
+          className="border-l-4 border-blue-600"
         />
 
         {/* Running Scans */}
@@ -84,9 +84,9 @@ const Dashboard: React.FC = () => {
           title="Active Scans"
           value="3"
           subtitle="2 port scans, 1 vuln scan"
-          icon={<Activity className="w-6 h-6 text-cyber-matrix animate-pulse" />}
+          icon={<Activity className="w-6 h-6 text-blue-500 animate-pulse" />}
           glowColor="matrix"
-          className="border-l-4 border-cyber-matrix"
+          className="border-l-4 border-blue-500"
         />
 
         {/* Critical Vulnerabilities */}
@@ -94,9 +94,9 @@ const Dashboard: React.FC = () => {
           title="Critical Vulnerabilities"
           value="12"
           subtitle="Immediate attention required"
-          icon={<AlertTriangle className="w-6 h-6 text-danger-700" />}
+          icon={<AlertTriangle className="w-6 h-6 text-red-600" />}
           glowColor="danger"
-          className="border-l-4 border-danger-700"
+          className="border-l-4 border-red-600"
         />
 
         {/* Security Score */}
@@ -104,9 +104,9 @@ const Dashboard: React.FC = () => {
           title="Security Score"
           value="78/100"
           subtitle="Moderate risk level"
-          icon={<Shield className="w-6 h-6 text-warning-700" />}
+          icon={<Shield className="w-6 h-6 text-amber-600" />}
           glowColor="warning"
-          className="border-l-4 border-warning-700"
+          className="border-l-4 border-amber-600"
         />
       </div>
 
@@ -115,7 +115,7 @@ const Dashboard: React.FC = () => {
         {/* Activity Timeline */}
         <Card variant="glass">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Recent Activity
             </h2>
           </CardHeader>
@@ -127,18 +127,18 @@ const Dashboard: React.FC = () => {
                 { time: '1 hour ago', action: 'Critical vulnerability detected', target: 'database-prod', status: 'critical' },
                 { time: '2 hours ago', action: 'New target added', target: '10.0.0.50', status: 'info' },
               ].map((activity, index) => (
-                <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
+                <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/30 hover:backdrop-blur-lg transition-colors">
                   <div className={`w-2 h-2 rounded-full ${
-                    activity.status === 'success' ? 'bg-success-800' :
-                    activity.status === 'active' ? 'bg-cyber-matrix animate-pulse' :
-                    activity.status === 'critical' ? 'bg-danger-700' :
-                    'bg-primary-700'
+                    activity.status === 'success' ? 'bg-green-600' :
+                    activity.status === 'active' ? 'bg-blue-500 animate-pulse' :
+                    activity.status === 'critical' ? 'bg-red-600' :
+                    'bg-blue-600'
                   }`}></div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-body-sm text-gray-50">{activity.action}</p>
-                    <p className="text-xs text-gray-400 text-mono">{activity.target}</p>
+                    <p className="text-body-sm text-slate-900 dark:text-gray-50">{activity.action}</p>
+                    <p className="text-xs text-slate-600 dark:text-gray-400 text-mono">{activity.target}</p>
                   </div>
-                  <span className="text-xs text-gray-400">{activity.time}</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">{activity.time}</span>
                 </div>
               ))}
             </div>
@@ -148,7 +148,7 @@ const Dashboard: React.FC = () => {
         {/* Quick Actions */}
         <Card variant="glass">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Quick Actions
             </h2>
           </CardHeader>
@@ -182,7 +182,7 @@ const Dashboard: React.FC = () => {
       {/* Security Alerts & Component Showcase */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <h2 className="text-heading text-h4 font-semibold text-gray-50">
+          <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
             Security Alerts
           </h2>
           <AlertCard
@@ -212,14 +212,14 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-heading text-h4 font-semibold text-gray-50">
+          <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
             Component Showcase
           </h2>
           
           {/* Button Showcase */}
           <Card variant="solid" glow glowColor="primary">
             <CardHeader>
-              <h3 className="text-body font-medium text-gray-50">Buttons</h3>
+              <h3 className="text-body font-medium text-slate-900 dark:text-gray-50">Buttons</h3>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
@@ -236,13 +236,13 @@ const Dashboard: React.FC = () => {
           {/* Badge Showcase */}
           <Card variant="bordered" glowColor="matrix">
             <CardHeader>
-              <h3 className="text-body font-medium text-gray-50">Badge System</h3>
+              <h3 className="text-body font-medium text-slate-900 dark:text-gray-50">Badge System</h3>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {/* Threat Levels */}
                 <div>
-                  <h4 className="text-body-sm font-medium text-gray-400 mb-2">Threat Levels:</h4>
+                  <h4 className="text-body-sm font-medium text-slate-600 dark:text-gray-400 mb-2">Threat Levels:</h4>
                   <div className="flex flex-wrap gap-2">
                     <ThreatBadge level="low" />
                     <ThreatBadge level="medium" />
@@ -253,7 +253,7 @@ const Dashboard: React.FC = () => {
 
                 {/* Status Badges */}
                 <div>
-                  <h4 className="text-body-sm font-medium text-gray-400 mb-2">Statuses:</h4>
+                  <h4 className="text-body-sm font-medium text-slate-600 dark:text-gray-400 mb-2">Statuses:</h4>
                   <div className="flex flex-wrap gap-2">
                     <StatusBadge status="active" />
                     <StatusBadge status="scanning" />
@@ -266,7 +266,7 @@ const Dashboard: React.FC = () => {
 
                 {/* Service Badges */}
                 <div>
-                  <h4 className="text-body-sm font-medium text-gray-400 mb-2">Services:</h4>
+                  <h4 className="text-body-sm font-medium text-slate-600 dark:text-gray-400 mb-2">Services:</h4>
                   <div className="flex flex-wrap gap-2">
                     <ServiceBadge service="SSH" port={22} secure />
                     <ServiceBadge service="HTTP" port={80} />
@@ -278,7 +278,7 @@ const Dashboard: React.FC = () => {
 
                 {/* CVE Badges */}
                 <div>
-                  <h4 className="text-body-sm font-medium text-gray-400 mb-2">Vulnerabilities:</h4>
+                  <h4 className="text-body-sm font-medium text-slate-600 dark:text-gray-400 mb-2">Vulnerabilities:</h4>
                   <div className="flex flex-wrap gap-2">
                     <CVEBadge cveId="CVE-2023-1234" score={9.8} />
                     <CVEBadge cveId="CVE-2023-5678" score={7.2} />
@@ -289,7 +289,7 @@ const Dashboard: React.FC = () => {
 
                 {/* General Badges */}
                 <div>
-                  <h4 className="text-body-sm font-medium text-gray-400 mb-2">General:</h4>
+                  <h4 className="text-body-sm font-medium text-slate-600 dark:text-gray-400 mb-2">General:</h4>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="primary">Primary</Badge>
                     <Badge variant="secondary">Secondary</Badge>
@@ -310,7 +310,7 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card variant="glass">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Target Input Forms
             </h2>
           </CardHeader>
@@ -342,7 +342,7 @@ const Dashboard: React.FC = () => {
 
         <Card variant="glass">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Input Variants
             </h2>
           </CardHeader>
@@ -396,10 +396,10 @@ const Dashboard: React.FC = () => {
         {/* Scan Results Table */}
         <Card variant="glass">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Port Scan Results
             </h2>
-            <p className="text-body-sm text-gray-400 mt-1">
+            <p className="text-body-sm text-slate-600 dark:text-gray-400 mt-1">
               Latest scan results for target 192.168.1.100
             </p>
           </CardHeader>
@@ -418,10 +418,10 @@ const Dashboard: React.FC = () => {
         {/* Vulnerability Table */}
         <Card variant="glass">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900 dark:text-gray-50">
               Vulnerability Assessment
             </h2>
-            <p className="text-body-sm text-gray-400 mt-1">
+            <p className="text-body-sm text-slate-600 dark:text-gray-400 mt-1">
               Critical and high-priority vulnerabilities requiring attention
             </p>
           </CardHeader>

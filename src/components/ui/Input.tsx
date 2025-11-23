@@ -48,7 +48,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           {/* Start Icon */}
           {startIcon && (
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">
               {startIcon}
             </div>
           )}
@@ -69,14 +69,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               
               // Variant styles
               {
-                // Default - dark with border
-                'bg-gray-800 border border-gray-700 text-gray-50 focus:border-primary-600 focus:ring-primary-800': variant === 'default',
+                // Default - Modern glass
+                'backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 border border-slate-200/50 dark:border-gray-700/50 text-slate-900 dark:text-gray-100 placeholder:text-slate-400 focus:border-blue-400/60 focus:ring-blue-500/20 focus:bg-white/90': variant === 'default',
                 
-                // Filled - darker background
-                'bg-gray-900 border border-gray-800 text-gray-50 focus:border-primary-600 focus:ring-primary-800': variant === 'filled',
+                // Filled - Solid white
+                'bg-white border border-slate-200 text-slate-900 dark:text-gray-100 placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-500/20': variant === 'filled',
                 
-                // Cyber - matrix themed
-                'bg-gray-950 border border-cyber-matrix/30 text-cyber-matrix placeholder:text-cyber-matrix/50 font-mono focus:border-cyber-matrix focus:ring-cyber-matrix/20 focus:shadow-glow': variant === 'cyber',
+                // Cyber - Enhanced glass with tech feel
+                'backdrop-blur-xl bg-white/70 border-2 border-slate-200/50 dark:border-gray-700/50 text-slate-900 dark:text-gray-100 placeholder:text-slate-400 hover:border-slate-300/60 focus:border-blue-400/60 focus:bg-white/90 focus:ring-blue-500/20 focus:ring-4 shadow-glass': variant === 'cyber',
               },
               
               // Validation states

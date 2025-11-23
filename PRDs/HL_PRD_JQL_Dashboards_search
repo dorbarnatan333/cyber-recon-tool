@@ -1,0 +1,406 @@
+# 📋 Context Brief for Product Agent — Advanced Endpoint Search & Dashboard
+
+**Purpose:** Provide comprehensive context to the product agent for writing a complete PRD for JQL-based endpoint filtering and company dashboard features.
+
+---
+
+## 1. Project Background & Current State
+
+### Existing System
+- **Current Page:** Endpoint search results page displaying devices found in a company
+- **Current Search:** Basic text search (searches by company name like "Wide World Importers")
+- **Current Display:** Card-based layout showing:
+  - Device name (e.g., CONTOSO-WKS-015)
+  - IP address
+  - MAC address
+  - Operating system
+  - Open ports count
+  - Users
+  - Last activity timestamp
+  - Suspicious activity level (CRITICAL, HIGH, MEDIUM) with indicator count
+  - Detailed suspicious indicators (e.g., "47 failed login attempts detected")
+- **Current Actions per Card:** View, Download, Alert, Tag icons
+
+### Technology Context
+- **Target Users:** Cybersecurity analysts, penetration testers, defensive network teams
+- **Use Case:** Network reconnaissance and endpoint investigation
+- **Data Sources:** DHCP logs, ARP caches, switch CAM tables, Wi-Fi controllers, syslogs, asset databases
+
+---
+
+## 2. Feature Request Overview
+
+### Primary Goals
+1. **Advanced Filtering:** Enable power users to filter endpoints using JQL-style queries across ALL available endpoint attributes
+2. **Company Analytics:** Provide executives/analysts with high-level dashboard view of all endpoints in a company
+3. **Better Testing:** Generate rich, realistic mock data to support feature development and demos
+
+---
+
+## 3. Detailed Requirements Breakdown
+
+### 3.1 JQL Search Bar Enhancement
+
+**What to Build:**
+- Replace or enhance existing search bar to support structured query language
+- Allow filtering by any endpoint attribute visible on the cards + additional metadata
+
+**Filterable Attributes:**
+- Device name/hostname (exact match, contains, starts with)
+- IP address (exact, CIDR range, subnet)
+- MAC address (exact, starts with, vendor lookup)
+- Operating system (exact, contains, version comparison)
+- Users (exact, contains, multiple users per device)
+- Open ports (exact port number, range, "any of" list)
+- Last activity (time-based: "within 24h", "older than 7 days", etc.)
+- Suspicious activity level (CRITICAL, HIGH, MEDIUM, LOW, NONE)
+- Suspicious indicators (contains text, count threshold)
+- Device type (server, workstation, router, IoT, etc.)
+
+**JQL Syntax Examples:**
+```
+ip = "192.168.1.105"
+os CONTAINS "Windows 10" AND open_ports > 5
+suspicious_activity = "CRITICAL"
+last_activity < "3d"
+mac STARTS WITH "00:11:22"
+users CONTAINS "jsmith" OR users CONTAINS "admin"
+device_type = "workstation" AND os = "Windows 11"
+(ip IN ["192.168.1.0/24"] AND suspicious_activity != "NONE")
+```
+
+**UX Requirements:**
+- Auto-complete/suggest as user types
+- Syntax highlighting (color-code fields, operators, values)
+- Real-time query validation with helpful error messages
+- Show result count dynamically as query is built
+- Query history (last 10 searches per user)
+- Ability to save/bookmark frequently used queries
+- Clear button to reset query
+- Link to syntax guide/documentation
+
+**Technical Requirements:**
+- Parse JQL into structured filter object
+- Support operators: `=`, `!=`, `>`, `<`, `>=`, `<=`, `CONTAINS`, `STARTS WITH`, `IN`, `NOT IN`
+- Support logical operators: `AND`, `OR`, `NOT`, parentheses for grouping
+- Handle time-based values (convert "3d", "24h" to actual timestamps)
+- Case-insensitive string matching by default
+
+---
+
+### 3.2 Company Dashboard Overview
+
+**What to Build:**
+- New CTA button on search results page: "View Company Dashboard" or "Company Overview"
+- Opens full-page dashboard (or modal overlay) showing aggregated analytics
+
+**Dashboard Components Required:**
+
+1. **Summary Cards (Top Row):**
+   - Total endpoint count
+   - Active devices (seen in last 24h)
+   - Critical/High risk devices count
+   - Average suspicious indicators per device
+
+2. **Device Type Breakdown:**
+   - Pie chart or bar chart
+   - Categories: Workstation, Server, Router, Switch, IoT, Other
+   - Click to filter search results by device type
+
+3. **Operating System Distribution:**
+   - Horizontal bar chart or pie chart
+   - Show top 5-10 OS versions
+   - Categories: Windows (7, 10, 11, Server), Linux (Ubuntu, CentOS), macOS, Cisco IOS, etc.
+
+4. **Suspicious Activity Heatmap:**
+   - Stacked bar or distribution chart
+   - Breakdown: CRITICAL, HIGH, MEDIUM, LOW, NONE
+   - Show both count and percentage
+
+5. **Last Activity Timeline:**
+   - Line/area chart showing device activity over time
+   - X-axis: Time (last 30 days by default)
+   - Y-axis: Number of active devices
+   - Filterable by time range (24h, 7d, 30d, all time)
+
+6. **Top Open Ports:**
+   - Bar chart showing most common open ports across all devices
+   - Top 10 ports with counts
+   - Common ports: 80, 443, 22, 3389, 445, etc.
+
+7. **User Activity Summary:**
+   - Table showing top users by device count
+   - Columns: Username, Device Count, Last Seen
+   - Click to filter devices by user
+
+8. **Network Segmentation View:**
+   - Grouped bar chart or treemap
+   - Devices per subnet/VLAN
+   - Shows network topology at a glance
+
+9. **Top Suspicious Indicators:**
+   - Table showing most frequently detected threats
+   - Columns: Indicator Type, Count, Severity
+   - Examples: "Failed login attempts", "C2 domain connection", "Outdated software"
+
+**Dashboard UX:**
+- Interactive charts (hover for tooltips, click to drill down)
+- Time range selector at top
+- Export dashboard as PDF/image
+- Auto-refresh toggle (every 60s)
+- Drill-down: clicking chart segment filters main search and returns to results page
+- Responsive layout (2-column on desktop, stacked on mobile)
+
+**Dashboard Location:**
+- Accessible via CTA button on search results page
+- Button placement: Top-right, next to existing "Filters" button
+- Opens in same tab (or modal overlay if preferred)
+
+---
+
+### 3.3 Mock Data Generation
+
+**Why Needed:**
+- Current system likely has limited test data
+- Need realistic, diverse data to:
+  - Test JQL filtering edge cases
+  - Populate dashboard charts meaningfully
+  - Demo features to stakeholders
+  - Support automated testing
+
+**Mock Data Specifications:**
+
+**Company Coverage:**
+- Generate data for at least 5 different companies
+- Each company should have 50-200 endpoints
+- Company examples: "Wide World Importers", "Contoso Ltd", "Fabrikam Inc", "Northwind Traders", "Adventure Works"
+
+**Endpoint Diversity per Company:**
+
+1. **Device Names:**
+   - Pattern: {COMPANY}-{TYPE}-{NUMBER}
+   - Examples: CONTOSO-WKS-015, FABRIKAM-SRV-DB01, NORTHWIND-RTR-CORE-01
+
+2. **Device Types Distribution:**
+   - Workstations: 60%
+   - Servers: 25%
+   - Network devices (routers, switches): 10%
+   - IoT devices: 5%
+
+3. **Operating Systems:**
+   - Windows: 60% (mix of 7, 10, 11, Server 2019, Server 2022)
+   - Linux: 25% (Ubuntu, CentOS, Debian, RHEL)
+   - macOS: 8%
+   - Network OS (Cisco IOS, Juniper): 5%
+   - Other: 2%
+
+4. **IP Addresses:**
+   - Use realistic private ranges: 192.168.x.x, 10.x.x.x, 172.16-31.x.x
+   - Group by subnet (e.g., 192.168.1.0/24 for workstations, 192.168.10.0/24 for servers)
+
+5. **MAC Addresses:**
+   - Realistic vendor prefixes (Dell, HP, Cisco, Apple, Intel, etc.)
+   - No duplicates within same company
+
+6. **Users:**
+   - 1-3 users per workstation
+   - 1 user (admin/service account) per server
+   - Username patterns: firstname.lastname, firstnamelastname, admin, service accounts
+   - Examples: jsmith, john.doe, admin, svc-backup
+
+7. **Open Ports:**
+   - Common ports: 80, 443, 22, 3389, 445, 139
+   - Uncommon ports: random selection from 1024-65535
+   - Port count varies by device type (servers: 5-15, workstations: 1-5)
+
+8. **Suspicious Activity Distribution:**
+   - CRITICAL: 5% of devices
+   - HIGH: 15%
+   - MEDIUM: 30%
+   - LOW: 40%
+   - NONE: 10%
+
+9. **Suspicious Indicators (realistic examples):**
+   - "X failed login attempts detected" (X = 5-100)
+   - "Unusual database query patterns"
+   - "Connection to known C2 domain"
+   - "Unsigned executable in TEMP folder"
+   - "Outdated browser version detected"
+   - "Port scan activity detected"
+   - "Privilege escalation attempt"
+   - "Unusual outbound traffic volume"
+
+10. **Last Activity:**
+    - Recent (0-24h): 40%
+    - Active (1-7d): 35%
+    - Stale (7-30d): 20%
+    - Dormant (30d+): 5%
+
+**Mock Data Format:**
+- Store as JSON files or seed database
+- Each endpoint should be a complete object with all attributes
+- Use Faker.js or similar library for generating realistic names, dates, etc.
+- Ensure cross-referential consistency (e.g., Windows devices don't show SSH on port 22 as primary service)
+
+**Mock Data Generator Requirements:**
+- Reusable script/function to generate data on demand
+- Configurable parameters: company count, endpoints per company, suspicious activity distribution
+- Seed-based generation for reproducible test data
+- Validation to ensure no duplicate MACs/IPs within same company
+
+---
+
+## 4. User Workflows
+
+### Workflow 1: Security Analyst Hunting for Threats
+1. Analyst arrives on search results page (already showing company "Wide World Importers")
+2. Wants to find all Windows 10 workstations with critical suspicious activity
+3. Types JQL query: `os CONTAINS "Windows 10" AND device_type = "workstation" AND suspicious_activity = "CRITICAL"`
+4. Sees 3 matching endpoints
+5. Clicks on one to investigate further
+6. Exports filtered list as CSV for reporting
+
+### Workflow 2: Network Admin Checking Subnet Activity
+1. Admin navigates to company dashboard
+2. Sees network segmentation chart showing 192.168.1.0/24 has 45 devices
+3. Clicks on that subnet segment
+4. Returns to search results filtered to that subnet
+5. Uses JQL to further narrow: `ip IN ["192.168.1.0/24"] AND last_activity > "7d"`
+6. Identifies stale devices for decommissioning
+
+### Workflow 3: Executive Reviewing Security Posture
+1. Manager opens company dashboard
+2. Reviews suspicious activity distribution (pie chart shows 20% HIGH or CRITICAL)
+3. Clicks on "CRITICAL" segment
+4. Sees list of 8 critical devices
+5. Drills down on top suspicious indicator: "Failed login attempts"
+6. Exports dashboard as PDF for presentation
+
+---
+
+## 5. Technical Constraints & Considerations
+
+### Performance
+- JQL queries should execute in <2s for up to 10,000 endpoints
+- Dashboard should load in <3s
+- Paginate search results (50 per page)
+
+### Security
+- Query input must be sanitized to prevent injection attacks
+- Role-based access control: users only see companies they have permission for
+- Audit log all JQL queries for security monitoring
+
+### Scalability
+- Support up to 100,000 endpoints per company (future-proof)
+- Dashboard aggregations should be cached (5 min TTL)
+- Consider database indexing for common filter fields
+
+### Browser Compatibility
+- Support latest versions of Chrome, Firefox, Safari, Edge
+- Responsive design for tablet/mobile viewing
+
+---
+
+## 6. Success Metrics
+
+### Usage Metrics
+- % of users who use JQL search vs basic search
+- Average queries per user session
+- Most commonly used JQL operators/fields
+- Dashboard view rate (views per week)
+
+### Efficiency Metrics
+- Time to find specific endpoint (before/after JQL)
+- Reduction in false positive investigations
+- Dashboard insights acted upon (drill-down click rate)
+
+### Quality Metrics
+- Query error rate (invalid syntax)
+- Dashboard load time
+- User satisfaction score (post-feature survey)
+
+---
+
+## 7. Out of Scope (for v1)
+
+- Advanced JQL features like JOIN operations across multiple data sources
+- Real-time alerting based on JQL queries
+- Scheduled JQL reports (e.g., email daily digest)
+- Dashboard customization (user-defined widgets)
+- Dashboard comparisons across multiple companies
+- Mobile app version
+- Integration with external SIEM tools
+
+---
+
+## 8. Open Questions for Product Agent
+
+1. Should we support saved/bookmarked queries at user level or team level?
+2. Dashboard drill-down: open filtered results in new tab or same page?
+3. JQL syntax: start with simple AND/OR, or support parentheses in v1?
+4. Mock data: generate on-demand or pre-seed database?
+5. Export limits: max number of endpoints in single export?
+6. Dashboard auto-refresh: on by default or user-configurable?
+7. Time range options: standardize on 24h/7d/30d or allow custom?
+8. Query validation: real-time or on Enter key?
+
+---
+
+## 9. Reference Materials
+
+### Screenshots Provided
+- Image 1: Search results page showing 4 devices with suspicious activity indicators
+- Image 2: Expanded view showing detailed suspicious indicators per device
+
+### Similar Tools (for inspiration)
+- Splunk query language
+- Jira JQL
+- Elasticsearch query DSL
+- Kibana dashboards
+
+### Existing PRD Example
+- MAC Address Network Investigation PRD (provided in system context)
+- Use similar structure, quality bar, and level of detail
+
+---
+
+## 10. Deliverable Expectations
+
+**What Product Agent Should Produce:**
+
+1. **Complete PRD** following Lean PM template including:
+   - Feature summary
+   - Functional requirements (FR1, FR2, etc.)
+   - Inputs/Outputs
+   - Logic notes
+   - Edge cases
+   - UX/UI specifications
+   - Acceptance criteria
+   - Technical implementation notes
+
+2. **JQL Grammar Specification:**
+   - Supported operators
+   - Supported fields
+   - Syntax examples
+   - Error message templates
+
+3. **Dashboard Wireframe Description:**
+   - Layout specification
+   - Chart types and configurations
+   - Interaction patterns
+
+4. **Mock Data Schema:**
+   - JSON structure for endpoint objects
+   - Generation algorithm pseudocode
+   - Sample data examples
+
+5. **Analytics Events:**
+   - Event names and triggers
+   - Properties to track
+   - Reporting dashboards needed
+
+---
+
+**END OF CONTEXT BRIEF**
+
+**Next Step:** Product agent should use this brief to write a comprehensive PRD that is implementation-ready for the Claude Code Agent.

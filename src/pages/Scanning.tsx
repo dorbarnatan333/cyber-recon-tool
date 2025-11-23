@@ -197,10 +197,10 @@ const Scanning: React.FC = () => {
     const colorMap = {
       'port-scan': 'text-primary-400',
       'vuln-scan': 'text-danger-400',
-      'discovery': 'text-cyber-matrix',
+      'discovery': 'text-blue-500',
       'full-audit': 'text-warning-400'
     }
-    return colorMap[type as keyof typeof colorMap] || 'text-gray-400'
+    return colorMap[type as keyof typeof colorMap] || 'text-slate-600'
   }
 
   const getIntensityBadge = (intensity: string) => {
@@ -224,17 +224,17 @@ const Scanning: React.FC = () => {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-heading text-h2 font-semibold text-gray-50">
+          <h1 className="text-heading text-h2 font-semibold text-slate-900">
             Scanning Operations
           </h1>
-          <p className="text-body-sm text-gray-400 mt-1">
+          <p className="text-body-sm text-slate-600 mt-1">
             Monitor and manage active security scans and assessments
           </p>
         </div>
-        <div className="flex items-center space-x-2 text-xs text-gray-400">
+        <div className="flex items-center space-x-2 text-xs text-slate-600">
           <Timer className="w-4 h-4" />
           <span>Last refresh: 5 seconds ago</span>
-          <div className="w-2 h-2 bg-cyber-matrix rounded-full animate-pulse"></div>
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
         </div>
       </div>
 
@@ -244,10 +244,10 @@ const Scanning: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Running Scans</p>
-                <p className="text-h3 font-bold text-gray-50">{activeScanStats.running}</p>
+                <p className="text-body-sm font-medium text-slate-600">Running Scans</p>
+                <p className="text-h3 font-bold text-slate-900">{activeScanStats.running}</p>
               </div>
-              <Activity className="w-8 h-8 text-cyber-matrix animate-pulse" />
+              <Activity className="w-8 h-8 text-blue-500 animate-pulse" />
             </div>
           </CardContent>
         </Card>
@@ -256,8 +256,8 @@ const Scanning: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Queued Scans</p>
-                <p className="text-h3 font-bold text-gray-50">{activeScanStats.queued}</p>
+                <p className="text-body-sm font-medium text-slate-600">Queued Scans</p>
+                <p className="text-h3 font-bold text-slate-900">{activeScanStats.queued}</p>
               </div>
               <Clock className="w-8 h-8 text-warning-700" />
             </div>
@@ -268,8 +268,8 @@ const Scanning: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">Completed Today</p>
-                <p className="text-h3 font-bold text-gray-50">{activeScanStats.completed}</p>
+                <p className="text-body-sm font-medium text-slate-600">Completed Today</p>
+                <p className="text-h3 font-bold text-slate-900">{activeScanStats.completed}</p>
               </div>
               <CheckCircle2 className="w-8 h-8 text-success-700" />
             </div>
@@ -280,8 +280,8 @@ const Scanning: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-body-sm font-medium text-gray-400">New Findings</p>
-                <p className="text-h3 font-bold text-gray-50">{activeScanStats.findings}</p>
+                <p className="text-body-sm font-medium text-slate-600">New Findings</p>
+                <p className="text-h3 font-bold text-slate-900">{activeScanStats.findings}</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-danger-700" />
             </div>
@@ -294,10 +294,10 @@ const Scanning: React.FC = () => {
         {/* Quick Start Scan */}
         <Card variant="glass" glow glowColor="matrix">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900">
               Quick Start Scan
             </h2>
-            <p className="text-body-sm text-gray-400">
+            <p className="text-body-sm text-slate-600">
               Launch a new security scan with predefined templates
             </p>
           </CardHeader>
@@ -328,23 +328,23 @@ const Scanning: React.FC = () => {
                         onClick={() => setSelectedTemplate(template.id)}
                         className={`p-3 rounded-lg border transition-all duration-200 text-left ${
                           selectedTemplate === template.id
-                            ? 'border-cyber-matrix bg-cyber-matrix/10 glow-matrix'
+                            ? 'border-cyber-matrix bg-blue-500/10 glow-matrix'
                             : 'border-gray-600 bg-gray-800/50 hover:border-gray-500'
                         }`}
                       >
                         <div className="flex items-start space-x-3">
                           <Icon className={`w-5 h-5 mt-0.5 ${
-                            selectedTemplate === template.id ? 'text-cyber-matrix' : 'text-gray-400'
+                            selectedTemplate === template.id ? 'text-blue-500' : 'text-slate-600'
                           }`} />
                           <div className="flex-1">
                             <h3 className={`font-medium ${
-                              selectedTemplate === template.id ? 'text-cyber-matrix' : 'text-gray-50'
+                              selectedTemplate === template.id ? 'text-blue-500' : 'text-slate-900'
                             }`}>
                               {template.name}
                             </h3>
-                            <p className="text-xs text-gray-400 mt-1">{template.description}</p>
+                            <p className="text-xs text-slate-600 mt-1">{template.description}</p>
                             <div className="flex items-center justify-between mt-2">
-                              <span className="text-xs text-gray-500">~{template.estimatedTime}</span>
+                              <span className="text-xs text-slate-9000">~{template.estimatedTime}</span>
                               <Badge 
                                 variant={getIntensityBadge(template.intensity) as any} 
                                 size="sm"
@@ -378,10 +378,10 @@ const Scanning: React.FC = () => {
         {/* All Scan Templates */}
         <Card variant="solid">
           <CardHeader>
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900">
               Scan Templates
             </h2>
-            <p className="text-body-sm text-gray-400">
+            <p className="text-body-sm text-slate-600">
               Choose from available scanning methodologies
             </p>
           </CardHeader>
@@ -397,8 +397,8 @@ const Scanning: React.FC = () => {
                     <div className="flex items-center space-x-3">
                       <Icon className={`w-5 h-5 ${getScanTypeColor(template.type)}`} />
                       <div>
-                        <h3 className="text-body font-medium text-gray-50">{template.name}</h3>
-                        <p className="text-xs text-gray-400">{template.estimatedTime}</p>
+                        <h3 className="text-body font-medium text-slate-900">{template.name}</h3>
+                        <p className="text-xs text-slate-600">{template.estimatedTime}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -421,7 +421,7 @@ const Scanning: React.FC = () => {
       <Card variant="glass">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-heading text-h4 font-semibold text-gray-50">
+            <h2 className="text-heading text-h4 font-semibold text-slate-900">
               Active Scan Jobs
             </h2>
             <Button variant="secondary" size="sm">
@@ -454,13 +454,13 @@ const Scanning: React.FC = () => {
                       <div className="flex items-center space-x-3">
                         <TypeIcon className={`w-4 h-4 ${getScanTypeColor(job.type)}`} />
                         <div>
-                          <p className="font-medium text-gray-50">{job.name}</p>
-                          <p className="text-xs text-gray-400">{job.id}</p>
+                          <p className="font-medium text-slate-900">{job.name}</p>
+                          <p className="text-xs text-slate-600">{job.id}</p>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>
-                      <span className="font-mono text-cyber-matrix">{job.target}</span>
+                      <span className="font-mono text-blue-500">{job.target}</span>
                     </TableCell>
                     <TableCell>
                       <Badge variant="secondary" size="sm">
@@ -475,7 +475,7 @@ const Scanning: React.FC = () => {
                         <div className="w-16 bg-gray-700 rounded-full h-2">
                           <div 
                             className={`h-2 rounded-full transition-all duration-300 ${
-                              job.status === 'running' ? 'bg-cyber-matrix animate-pulse' :
+                              job.status === 'running' ? 'bg-blue-500 animate-pulse' :
                               job.status === 'completed' ? 'bg-success-600' :
                               job.status === 'failed' ? 'bg-danger-600' :
                               'bg-gray-600'
@@ -483,7 +483,7 @@ const Scanning: React.FC = () => {
                             style={{ width: `${job.progress}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs text-gray-400 w-10">{job.progress}%</span>
+                        <span className="text-xs text-slate-600 w-10">{job.progress}%</span>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -505,7 +505,7 @@ const Scanning: React.FC = () => {
                         )}
                       </div>
                     </TableCell>
-                    <TableCell className="text-gray-400 text-xs">
+                    <TableCell className="text-slate-600 text-xs">
                       {job.duration || formatDuration(job.startTime, job.endTime)}
                     </TableCell>
                     <TableCell>

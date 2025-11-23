@@ -16,7 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(
           // Base styles
-          'inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-800 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 disabled:pointer-events-none disabled:opacity-50',
+          'inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-800 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 disabled:pointer-events-none disabled:opacity-50 active:translate-y-0',
           
           // Size variants
           {
@@ -27,28 +27,28 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           
           // Variant styles
           {
-            // Primary - Matrix green theme
-            'bg-primary-800 text-gray-50 border border-primary-700 hover:bg-primary-700 hover:border-primary-600 rounded-md': variant === 'primary',
+            // Primary - Modern blue gradient
+            'bg-gradient-to-r from-blue-500 to-blue-600 text-white border border-blue-500/50 hover:from-blue-600 hover:to-blue-700 hover:-translate-y-0.5 hover:shadow-glow-blue rounded-xl backdrop-blur-sm': variant === 'primary',
             
-            // Secondary - Dark glass
-            'bg-gray-800 text-gray-50 border border-gray-700 hover:bg-gray-700 hover:border-gray-600 rounded-md': variant === 'secondary',
+            // Secondary - Glass effect
+            'backdrop-blur-xl bg-white/70 dark:bg-gray-700/70 text-slate-700 dark:text-gray-300 border border-slate-200/50 hover:bg-white/90 hover:text-slate-900 hover:border-slate-300/60 hover:-translate-y-0.5 hover:shadow-glass-lg rounded-xl': variant === 'secondary',
             
-            // Danger - Threat red
-            'bg-danger-800 text-gray-50 border border-danger-700 hover:bg-danger-700 hover:border-danger-600 rounded-md': variant === 'danger',
+            // Danger - Modern red gradient
+            'bg-gradient-to-r from-red-500 to-red-600 text-white border border-red-500/50 hover:from-red-600 hover:to-red-700 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] rounded-xl': variant === 'danger',
             
-            // Ghost - Transparent
-            'text-gray-300 hover:text-gray-50 hover:bg-gray-800 rounded-md': variant === 'ghost',
+            // Ghost - Minimal hover
+            'text-slate-600 hover:text-slate-900 hover:bg-white/60 hover:backdrop-blur-xl rounded-xl': variant === 'ghost',
             
-            // Matrix - Special cyber effect
-            'bg-gray-900 text-cyber-matrix border border-cyber-matrix hover:bg-gray-800 rounded-md font-mono text-sm tracking-wider': variant === 'matrix',
+            // Matrix - Keeping matrix theme for legacy
+            'backdrop-blur-xl bg-slate-900/80 text-blue-400 border border-blue-400/30 hover:bg-slate-800/90 hover:border-blue-400/50 rounded-xl font-mono text-sm tracking-wider': variant === 'matrix',
           },
           
           // Glow effects
           {
-            'shadow-glow hover:shadow-[0_0_30px_rgba(0,255,65,0.4)]': glow && variant === 'primary',
-            'shadow-glow-cyan hover:shadow-[0_0_30px_rgba(15,240,252,0.4)]': glow && variant === 'secondary',
-            'shadow-glow-danger hover:shadow-[0_0_30px_rgba(225,25,0,0.4)]': glow && variant === 'danger',
-            'shadow-glow hover:shadow-[0_0_30px_rgba(0,255,65,0.6)] animate-pulse-slow': glow && variant === 'matrix',
+            'shadow-glow-blue hover:shadow-glow-blue-lg': glow && variant === 'primary',
+            'shadow-glass hover:shadow-glass-lg': glow && variant === 'secondary',
+            'shadow-[0_0_20px_rgba(239,68,68,0.25)] hover:shadow-[0_0_30px_rgba(239,68,68,0.4)]': glow && variant === 'danger',
+            'shadow-glow-blue hover:shadow-glow-blue-lg animate-pulse-slow': glow && variant === 'matrix',
           },
           
           className

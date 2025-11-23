@@ -14,3 +14,4 @@ export {
   ScanResultsTable,
   VulnerabilityTable
 } from './Table'
+export { default as ThemeToggle } from './ThemeToggle'

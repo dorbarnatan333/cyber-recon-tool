@@ -7,7 +7,7 @@ import { Button } from './Button'
 // Base Table Components
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (
-    <div className="relative w-full overflow-auto rounded-lg border border-gray-700/50 bg-gray-900/50">
+    <div className="relative w-full overflow-auto rounded-xl border border-slate-200/60 backdrop-blur-xl bg-white/60">
       <table
         ref={ref}
         className={cn('w-full caption-bottom text-sm', className)}
@@ -22,7 +22,7 @@ const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttribut
   ({ className, ...props }, ref) => (
     <thead
       ref={ref}
-      className={cn('border-b border-gray-700 bg-gray-800/50', className)}
+      className={cn('border-b border-slate-200/60 backdrop-blur-lg bg-white/40', className)}
       {...props}
     />
   )
@@ -44,7 +44,7 @@ const TableFooter = React.forwardRef<HTMLTableSectionElement, React.HTMLAttribut
   ({ className, ...props }, ref) => (
     <tfoot
       ref={ref}
-      className={cn('border-t border-gray-700 bg-gray-800/30 font-medium', className)}
+      className={cn('border-t border-slate-200/60 bg-white/30/30 font-medium', className)}
       {...props}
     />
   )
@@ -56,7 +56,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
     <tr
       ref={ref}
       className={cn(
-        'border-b border-gray-800 transition-colors hover:bg-gray-800/50 data-[state=selected]:bg-primary-900/20',
+        'border-b border-gray-800 transition-colors hover:bg-white/30/50 data-[state=selected]:bg-primary-900/20',
         className
       )}
       {...props}
@@ -75,7 +75,7 @@ const TableHead = React.forwardRef<HTMLTableCellElement, React.HTMLAttributes<HT
       ref={ref}
       className={cn(
         'h-12 px-4 text-left align-middle font-medium text-gray-300 [&:has([role=checkbox])]:pr-0',
-        sortable && 'cursor-pointer hover:text-gray-50 transition-colors',
+        sortable && 'cursor-pointer hover:text-slate-900 dark:text-gray-50 transition-colors',
         className
       )}
       onClick={sortable ? onSort : undefined}
@@ -109,7 +109,7 @@ const TableCell = React.forwardRef<HTMLTableCellElement, React.HTMLAttributes<HT
   ({ className, ...props }, ref) => (
     <td
       ref={ref}
-      className={cn('p-4 align-middle [&:has([role=checkbox])]:pr-0 text-gray-50', className)}
+      className={cn('p-4 align-middle [&:has([role=checkbox])]:pr-0 text-slate-900 dark:text-gray-50', className)}
       {...props}
     />
   )
@@ -164,7 +164,7 @@ const ActionCell: React.FC<ActionCellProps> = ({
             className="fixed inset-0 z-10" 
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 top-8 z-20 w-48 rounded-md border border-gray-700 bg-gray-800 shadow-lg">
+          <div className="absolute right-0 top-8 z-20 w-48 rounded-md border border-slate-200/60 bg-white/30 shadow-lg">
             {defaultActions.map((action, index) => (
               <button
                 key={index}
@@ -174,7 +174,7 @@ const ActionCell: React.FC<ActionCellProps> = ({
                 }}
                 className={cn(
                   'flex w-full items-center space-x-2 px-4 py-2 text-sm text-left hover:bg-gray-700 transition-colors',
-                  action.variant === 'danger' ? 'text-danger-400 hover:text-danger-300' : 'text-gray-300 hover:text-gray-50',
+                  action.variant === 'danger' ? 'text-danger-400 hover:text-danger-300' : 'text-gray-300 hover:text-slate-900 dark:text-gray-50',
                   index === 0 && 'rounded-t-md',
                   index === defaultActions.length - 1 && 'rounded-b-md'
                 )}
@@ -292,7 +292,7 @@ const ScanResultsTable: React.FC<ScanResultsTableProps> = ({
             <TableCell>
               {result.service}
             </TableCell>
-            <TableCell className="text-gray-400">
+            <TableCell className="text-slate-600 dark:text-gray-400">
               {result.version || '-'}
             </TableCell>
             <TableCell>
@@ -425,7 +425,7 @@ const VulnerabilityTable: React.FC<VulnerabilityTableProps> = ({
                 'font-mono font-bold',
                 vuln.cvssScore >= 9 && 'text-danger-400',
                 vuln.cvssScore >= 7 && vuln.cvssScore < 9 && 'text-warning-400',
-                vuln.cvssScore < 7 && 'text-gray-400'
+                vuln.cvssScore < 7 && 'text-slate-600 dark:text-gray-400'
               )}>
                 {vuln.cvssScore.toFixed(1)}
               </span>
@@ -444,7 +444,7 @@ const VulnerabilityTable: React.FC<VulnerabilityTableProps> = ({
                 )}
               </div>
             </TableCell>
-            <TableCell className="text-gray-400 text-xs">
+            <TableCell className="text-slate-600 dark:text-gray-400 text-xs">
               {vuln.discoveredAt}
             </TableCell>
             <TableCell>
