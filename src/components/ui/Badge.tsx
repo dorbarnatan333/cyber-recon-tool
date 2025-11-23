@@ -18,38 +18,38 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
           // Base styles
           'inline-flex items-center font-medium rounded-md transition-all duration-200 border',
           
-          // Size variants
+          // Size variants - Enhanced spacing
           {
-            'px-2 py-1 text-xs': size === 'sm',
-            'px-3 py-1.5 text-sm': size === 'md',
+            'px-2.5 py-1 text-xs': size === 'sm',
+            'px-3.5 py-1.5 text-sm': size === 'md',
             'px-4 py-2 text-base': size === 'lg',
           },
           
           // Variant styles
           {
-            // Default
-            'bg-gray-800 text-gray-300 border-gray-700': variant === 'default',
+            // Default - Modern glass
+            'backdrop-blur-lg bg-slate-100/80 text-slate-700 border-slate-200/60': variant === 'default',
             
-            // Primary - Cyber theme
-            'bg-primary-900 text-primary-300 border-primary-700': variant === 'primary',
+            // Primary - Blue theme
+            'backdrop-blur-lg bg-blue-100/80 text-blue-800 border-blue-200/60': variant === 'primary',
             
-            // Secondary - Neutral
-            'bg-gray-700 text-gray-200 border-gray-600': variant === 'secondary',
+            // Secondary - Neutral glass
+            'backdrop-blur-lg bg-white/60 text-slate-600 border-slate-200/50': variant === 'secondary',
             
-            // Success - Matrix green
-            'bg-success-900 text-success-300 border-success-700': variant === 'success',
+            // Success - Green glass
+            'backdrop-blur-lg bg-green-100/80 text-green-800 border-green-200/60': variant === 'success',
             
-            // Danger - Threat red
-            'bg-danger-900 text-danger-300 border-danger-700': variant === 'danger',
+            // Danger - Red glass
+            'backdrop-blur-lg bg-red-100/80 text-red-800 border-red-200/60': variant === 'danger',
             
-            // Warning - Alert amber
-            'bg-warning-900 text-warning-300 border-warning-700': variant === 'warning',
+            // Warning - Amber glass
+            'backdrop-blur-lg bg-amber-100/80 text-amber-800 border-amber-200/60': variant === 'warning',
             
-            // Info - Information blue
-            'bg-blue-900 text-blue-300 border-blue-700': variant === 'info',
+            // Info - Cyan glass
+            'backdrop-blur-lg bg-cyan-100/80 text-cyan-800 border-cyan-200/60': variant === 'info',
             
-            // Matrix - Special cyber effect
-            'bg-gray-950 text-cyber-matrix border-cyber-matrix font-mono tracking-wider': variant === 'matrix',
+            // Matrix - Special tech effect
+            'backdrop-blur-lg bg-slate-900/80 text-blue-400 border-blue-400/30 font-mono tracking-wider': variant === 'matrix',
           },
           
           // Pulse animation
@@ -60,7 +60,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
             'shadow-glow': variant === 'primary' || variant === 'success' || variant === 'matrix',
             'shadow-glow-danger': variant === 'danger',
             'shadow-[0_0_15px_rgba(125,94,33,0.3)]': variant === 'warning',
-            'shadow-[0_0_15px_rgba(59,130,246,0.3)]': variant === 'info',
+            'shadow-[0_0_15px_rgba(6,182,212,0.3)]': variant === 'info',
           },
           
           className
@@ -98,12 +98,12 @@ const ThreatBadge = React.forwardRef<HTMLSpanElement, ThreatBadgeProps>(
         glow={glow}
         pulse={level === 'critical' ? true : pulse}
         className={cn(
-          // Level-specific styling
+          // Level-specific styling - Modern glass design with dark mode
           {
-            'text-yellow-200 border-yellow-600 bg-yellow-900': level === 'low',
-            'text-orange-200 border-orange-600 bg-orange-900': level === 'medium',
-            'text-red-200 border-red-600 bg-red-900': level === 'high',
-            'text-red-100 border-red-500 bg-red-800 font-bold': level === 'critical',
+            'backdrop-blur-lg bg-green-100/80 dark:bg-green-900/60 text-green-800 dark:text-green-300 border border-green-200/80 dark:border-green-700/60 font-bold text-xs tracking-wider shadow-sm': level === 'low',
+            'backdrop-blur-lg bg-amber-100/80 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-700/60 font-bold text-xs tracking-wider shadow-sm': level === 'medium',
+            'backdrop-blur-lg bg-red-100/80 dark:bg-red-900/60 text-red-800 dark:text-red-300 border border-red-200/80 dark:border-red-700/60 font-bold text-xs tracking-wider shadow-sm': level === 'high',
+            'backdrop-blur-lg bg-red-200/90 dark:bg-red-800/80 text-red-900 dark:text-red-200 border border-red-300 dark:border-red-600 font-bold text-xs tracking-wider shadow-lg': level === 'critical',
           },
           className
         )}

@@ -19,17 +19,17 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           
           // Variant styles
           {
-            // Default - subtle dark
-            'bg-gray-900/50 border border-gray-800': variant === 'default',
+            // Default - Modern glass
+            'backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 border border-slate-200/50 dark:border-gray-700/50 hover:border-slate-300/60 dark:hover:border-gray-600/60 hover:bg-white/90 dark:hover:bg-gray-800/90 shadow-glass hover:shadow-glass-lg transition-all duration-300': variant === 'default',
             
-            // Glass - backdrop blur with transparency
-            'glass border border-gray-700/50': variant === 'glass',
+            // Glass - Enhanced glass morphism
+            'backdrop-blur-xl bg-white/60 dark:bg-gray-800/60 border border-slate-200/50 dark:border-gray-700/50 hover:border-blue-300/40 dark:hover:border-blue-600/40 hover:bg-white/80 dark:hover:bg-gray-800/80 shadow-glass hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300': variant === 'glass',
             
-            // Solid - full opacity dark
-            'bg-gray-900 border border-gray-700': variant === 'solid',
+            // Solid - Clean white
+            'bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 hover:border-slate-300 dark:hover:border-gray-600 shadow-glass hover:shadow-glass-lg transition-all duration-300': variant === 'solid',
             
-            // Bordered - transparent with prominent border
-            'bg-transparent border-2': variant === 'bordered',
+            // Bordered - Minimal with emphasis
+            'bg-white/50 dark:bg-gray-800/50 border-2 border-slate-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-blue-500': variant === 'bordered',
           },
           
           // Border colors for bordered variant
@@ -42,10 +42,10 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           
           // Glow effects
           glow && {
-            'shadow-glow hover:shadow-[0_0_25px_rgba(11,133,176,0.3)]': glowColor === 'primary',
-            'shadow-glow hover:shadow-[0_0_25px_rgba(0,255,65,0.4)]': glowColor === 'matrix',
-            'shadow-glow-danger hover:shadow-[0_0_25px_rgba(225,25,0,0.3)]': glowColor === 'danger',
-            'shadow-[0_0_15px_rgba(125,94,33,0.2)] hover:shadow-[0_0_25px_rgba(125,94,33,0.4)]': glowColor === 'warning',
+            'shadow-glow-blue hover:shadow-glow-blue-lg': glowColor === 'primary',
+            'shadow-[0_0_20px_rgba(34,197,94,0.25)] hover:shadow-[0_0_30px_rgba(34,197,94,0.4)]': glowColor === 'matrix',
+            'shadow-[0_0_20px_rgba(239,68,68,0.25)] hover:shadow-[0_0_30px_rgba(239,68,68,0.4)]': glowColor === 'danger',
+            'shadow-[0_0_20px_rgba(245,158,11,0.25)] hover:shadow-[0_0_30px_rgba(245,158,11,0.4)]': glowColor === 'warning',
           },
           
           className
@@ -150,17 +150,17 @@ const MetricCard = React.forwardRef<HTMLDivElement, MetricCardProps>(
       >
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-body-sm font-medium text-gray-400">{title}</p>
-            <p className="text-h3 font-bold text-gray-50 mt-1">{value}</p>
+            <p className="text-body-sm font-medium text-slate-600 dark:text-gray-400">{title}</p>
+            <p className="text-h3 font-bold text-slate-900 dark:text-gray-50 mt-1">{value}</p>
           </div>
           {icon && (
             <div className={cn(
-              'w-12 h-12 rounded-lg flex items-center justify-center',
+              'w-12 h-12 rounded-xl flex items-center justify-center shadow-lg',
               {
-                'bg-primary-900': glowColor === 'primary',
-                'bg-gray-800': glowColor === 'matrix',
-                'bg-danger-900': glowColor === 'danger',
-                'bg-warning-900': glowColor === 'warning',
+                'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-blue-500/25': glowColor === 'primary',
+                'bg-gradient-to-br from-slate-500 to-slate-600 text-white shadow-slate-500/25': glowColor === 'matrix',
+                'bg-gradient-to-br from-red-500 to-red-600 text-white shadow-red-500/25': glowColor === 'danger',
+                'bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-amber-500/25': glowColor === 'warning',
               }
             )}>
               {icon}
@@ -171,12 +171,12 @@ const MetricCard = React.forwardRef<HTMLDivElement, MetricCardProps>(
         {(subtitle || trend) && (
           <div className="flex items-center justify-between mt-4">
             {subtitle && (
-              <span className="text-xs text-gray-400">{subtitle}</span>
+              <span className="text-xs text-slate-500">{subtitle}</span>
             )}
             {trend && (
               <div className={cn(
-                'flex items-center text-xs',
-                trend.positive ? 'text-success-800' : 'text-danger-700'
+                'flex items-center text-xs font-medium',
+                trend.positive ? 'text-green-600' : 'text-red-600'
               )}>
                 <span>{trend.value}</span>
               </div>
